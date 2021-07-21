@@ -1,1 +1,1 @@
-# music-player-react
+# React-music-player
