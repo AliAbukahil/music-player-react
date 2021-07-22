@@ -4,9 +4,9 @@ import Player from "./components/Player";
 import Song from "./components/Song";
 // Importing Styles scss
 import "./styles/app.scss";
-//Import data
+//Importing data
 import chillHop from "./data";
-// Import Util
+// Importing Util
 import util from "./util";
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
   return (
     <div>
       <Song currentSong={currentSong} />
-      <Player />
+      <Player currentSong={currentSong} />
     </div>
   );
 }
