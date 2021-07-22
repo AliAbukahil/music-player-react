@@ -7,13 +7,19 @@ import {
   faAngleRight,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Player = ({ currentSong }) => {
+const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
   // If you need to select a HTML tag in your components in React we use (use reference)
   // useRef
   const audioRef = useRef(null);
   // Events Handlers
   const playSongHandler = () => {
-    console.log(audioRef.current);
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(!isPlaying);
+    } else {
+      audioRef.current.play();
+      setIsPlaying(!isPlaying);
+    }
   };
   return (
     <div className="player">
@@ -36,7 +42,7 @@ const Player = ({ currentSong }) => {
           icon={faAngleRight}
         />
       </div>
-      <audio ref={audioRef} src="{currentSong.audio}"></audio>
+      <audio ref={audioRef} src={currentSong.audio}></audio>
     </div>
   );
 };
