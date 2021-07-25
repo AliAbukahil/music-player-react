@@ -2,7 +2,7 @@ import React from "react";
 // Importing Components
 import LibrarySong from "./LibrarySong";
 
-function Library({ songs, setCurrentSong }) {
+const Library = ({ songs, setCurrentSong, audioRef, isPlaying }) => {
   return (
     <div className="library">
       <h2>Library</h2>
@@ -14,14 +14,14 @@ function Library({ songs, setCurrentSong }) {
             song={song}
             id={song.id}
             key={song.id}
-            // audioRef={audioRef}
-            // isplaying={isPlaying}
+            audioRef={audioRef}
+            isPlaying={isPlaying}
             // setSongs={setSongs}
           />
         ))}
       </div>
     </div>
   );
-}
+};
 
 export default Library;
