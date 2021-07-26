@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // Importing Font Awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -17,7 +17,26 @@ const Player = ({
   setSongInfo,
   songs,
   setCurrentSong,
+  setSongs,
 }) => {
+  // use Effect
+  useEffect(() => {
+    // Add active State
+    const newSongs = songs.map((song) => {
+      if (song.id === currentSong.id) {
+        return {
+          ...song,
+          active: true,
+        };
+      } else {
+        return {
+          ...song,
+          active: false,
+        };
+      }
+    });
+    setSongs(newSongs);
+  }, [currentSong]);
   // Events Handlers
   const playSongHandler = () => {
     if (isPlaying) {
