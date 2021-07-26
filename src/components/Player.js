@@ -8,9 +8,6 @@ import {
   faPause,
 } from "@fortawesome/free-solid-svg-icons";
 
-// Importing a function from util.js file
-import { playAudio } from "../util"; // you import it between two curly brackets and the name between the curly brackets has to be the same as the name of the function
-
 const Player = ({
   currentSong,
   isPlaying,
@@ -69,20 +66,20 @@ const Player = ({
     setSongInfo({ ...songInfo, currentTime: e.target.value });
   };
   // skip Forward backward
-  const skipTrackHandler = (direction) => {
+  const skipTrackHandler = async (direction) => {
     let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
     if (direction === "skip-forward") {
-      setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+      await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
     }
     if (direction === "skip-back") {
       if ((currentIndex - 1) % songs.length === -1) {
-        setCurrentSong(songs[songs.length - 1]);
-        playAudio(isPlaying, audioRef);
+        await setCurrentSong(songs[songs.length - 1]);
+        if (isPlaying) audioRef.current.play();
         return;
       }
-      setCurrentSong(songs[(currentIndex - 1) % songs.length]);
+      await setCurrentSong(songs[(currentIndex - 1) % songs.length]);
     }
-    playAudio(isPlaying, audioRef);
+    if (isPlaying) audioRef.current.play();
   };
   // Add the Styles
   const trackAnim = {

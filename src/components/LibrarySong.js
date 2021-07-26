@@ -1,8 +1,5 @@
 import React from "react";
 
-// Importing a function from util.js file
-import { playAudio } from "../util"; // you import it between two curly brackets and the name between the curly brackets has to be the same as the name of the function
-
 const LibrarySong = ({
   song,
   songs,
@@ -12,8 +9,8 @@ const LibrarySong = ({
   isPlaying,
   setSongs,
 }) => {
-  const songSelectHandler = () => {
-    setCurrentSong(song);
+  const songSelectHandler = async () => {
+    await setCurrentSong(song);
     // Add active State
     const newSongs = songs.map((song) => {
       if (song.id === id) {
@@ -30,7 +27,7 @@ const LibrarySong = ({
     });
     setSongs(newSongs);
     // check if the song is playing
-    playAudio(isPlaying, audioRef);
+    if (isPlaying) audioRef.current.play();
   };
   return (
     <div

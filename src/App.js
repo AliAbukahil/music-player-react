@@ -8,8 +8,6 @@ import Nav from "./components/Nav";
 import "./styles/app.scss";
 //Importing data
 import chillHop from "./data";
-// Importing Util
-import util from "./util";
 
 function App() {
   // If you need to select a HTML tag in your components in React we use (use reference)
@@ -41,6 +39,11 @@ function App() {
       animationPercentage: animation,
     });
   };
+  const songEndHandler = async () => {
+    let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
+    await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+    if (isPlaying) audioRef.current.play();
+  };
   return (
     <div>
       <Nav libraryStatus={libraryStatus} setLibraryStatus={setLibraryStatus} />
@@ -69,6 +72,7 @@ function App() {
         onLoadedMetadata={timeUpdateHandler}
         ref={audioRef}
         src={currentSong.audio}
+        onEnded={songEndHandler}
       ></audio>
     </div>
   );
