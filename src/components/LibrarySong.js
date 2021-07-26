@@ -1,5 +1,8 @@
 import React from "react";
 
+// Importing a function from util.js file
+import { playAudio } from "../util"; // you import it between two curly brackets and the name between the curly brackets has to be the same as the name of the function
+
 const LibrarySong = ({
   song,
   songs,
@@ -26,15 +29,8 @@ const LibrarySong = ({
       }
     });
     setSongs(newSongs);
-    // Check if the Song is playing
-    if (isPlaying) {
-      const playPromise = audioRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.then((audio) => {
-          audioRef.current.play();
-        });
-      }
-    }
+    // check if the song is playing
+    playAudio(isPlaying, audioRef);
   };
   return (
     <div
