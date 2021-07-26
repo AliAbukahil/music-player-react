@@ -8,6 +8,7 @@ import Nav from "./components/Nav";
 import "./styles/app.scss";
 //Importing data
 import chillHop from "./data";
+import { library } from "@fortawesome/fontawesome-svg-core";
 
 function App() {
   // If you need to select a HTML tag in your components in React we use (use reference)
@@ -45,7 +46,7 @@ function App() {
     if (isPlaying) audioRef.current.play();
   };
   return (
-    <div>
+    <div className={`App ${libraryStatus ? `library-active` : ""}`}>
       <Nav libraryStatus={libraryStatus} setLibraryStatus={setLibraryStatus} />
       <Song currentSong={currentSong} />
       <Player

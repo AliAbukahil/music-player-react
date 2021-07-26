@@ -18,3 +18,13 @@
     font-size: 1rem;
   }
 }
+
+// Mobile Friendly Responsive
+
+@media screen and (max-width: 768px) {
+  .song-container {
+    img {
+      width: 60%;
+    }
+  }
+}
